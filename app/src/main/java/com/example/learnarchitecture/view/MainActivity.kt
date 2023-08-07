@@ -10,15 +10,14 @@ import com.example.learnarchitecture.R
 import com.example.learnarchitecture.model.MainModel
 import com.example.learnarchitecture.presenter.UserLoginPresenter
 
-class MainActivity : AppCompatActivity(), LoginView {
+class MainActivity : AppCompatActivity() {
 
-    private lateinit var welcomeMessage: TextView
     private lateinit var userLogin: EditText
     private lateinit var userPassword: EditText
     private lateinit var btnSingIn: Button
     private lateinit var btnSingUp: Button
 
-    private val presenter: UserLoginPresenter
+    private val presenter = UserLoginPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,27 +27,16 @@ class MainActivity : AppCompatActivity(), LoginView {
 
     private fun initUI() {
 
-        welcomeMessage = findViewById(R.id.textWelcome) //NullPointerException!!!
         userLogin = findViewById(R.id.loginView)
         userPassword = findViewById(R.id.passwordView)
         btnSingIn = findViewById(R.id.btnSignIn)
         btnSingUp = findViewById(R.id.btnSignUp) //не реализовано!
 
         btnSingIn.setOnClickListener {
-            val presenter = UserLoginPresenter(this)
             val intent = Intent(this, LoginActivity::class.java)
             presenter.userLogin(userLogin.text.toString(), userPassword.text.toString())
             startActivity(intent)
         }
     }
-
-    override fun onSuccessMessage(successMessage: String) {
-        welcomeMessage.text = successMessage
-    }
-
-    override fun onErrorMessage(errorMessage: String) {
-        welcomeMessage.text = errorMessage
-    }
-
 }
 

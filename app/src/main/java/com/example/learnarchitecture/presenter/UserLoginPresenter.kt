@@ -1,13 +1,16 @@
 package com.example.learnarchitecture.presenter
 
-import com.example.learnarchitecture.view.LoginView
+import com.example.learnarchitecture.view.LoginActivity
 
-class UserLoginPresenter(private var mainActivity: LoginView) {
+
+class UserLoginPresenter {
+
+    private val loginActivity = LoginActivity()
      fun userLogin(login: String, password: String) {
         if (login.isEmpty() || password.isEmpty()) {
-            mainActivity.onErrorMessage("Please fill both fields")
+            loginActivity.onErrorMessage("Please fill both fields")
         } else {
-            mainActivity.onSuccessMessage("Welcome $login")
+            loginActivity.onSuccessMessage("Welcome $login")
         }
     }
 }
