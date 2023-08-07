@@ -17,7 +17,7 @@ class LoginActivity: AppCompatActivity(), LoginView {
     }
 
     private fun initSignIn() {
-        welcomeMessage = findViewById(R.id.textWelcome)
+        welcomeMessage = findViewById(R.id.textWelcome) // UninitializedPropertyAccessException!!!
     }
 
     override fun onSuccessMessage(successMessage: String) {
