@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import com.example.learnarchitecture.R
-import com.example.learnarchitecture.model.MainModel
 import com.example.learnarchitecture.presenter.UserLoginPresenter
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userPassword: EditText
     private lateinit var btnSingIn: Button
     private lateinit var btnSingUp: Button
-
     private val presenter = UserLoginPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,11 +27,19 @@ class MainActivity : AppCompatActivity() {
         userLogin = findViewById(R.id.loginView)
         userPassword = findViewById(R.id.passwordView)
         btnSingIn = findViewById(R.id.btnSignIn)
-        btnSingUp = findViewById(R.id.btnSignUp) //не реализовано!
+        btnSingUp = findViewById(R.id.btnSignUp)
 
         btnSingIn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
-            presenter.userLogin(userLogin.text.toString(), userPassword.text.toString())
+            presenter.userLogin(
+                userLogin.text.toString(),
+                userPassword.text.toString()
+            )
+            startActivity(intent)
+        }
+
+        btnSingUp.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
